@@ -1,5 +1,8 @@
+import "dotenv/config"; // this loads .env secrets automatically
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
+import Word from "./models/Word.js";
 
 const app = express();
 const PORT = 5000;
@@ -46,10 +49,21 @@ const data = [
     description: "was on the arrow",
   },
 ];
-
-// The API Endpoint: The "door" React will knock on
-app.get("/api/words", (req, res) => {
-  res.json(data);
+// The front door route
+app.get("/", (req, res) => {
+  res.send("<h1>Al-Hamdu Lillah! The LuoBingo Server is Running 🚀</h1>");
+}); // The API Endpoint: The "door" React will knock on
+app.get("/api/words", async (req, res) => {
+  try {
+    const dbWords = await Word.find();
+    if (dbWords.length === 0) {
+      return res.json(data);
+    }
+    res.json(dbWords);
+  } catch (err) {
+    console.error("Fetch error, sending backup:", err);
+    res.json(data);
+  }
 });
 
 // Start the engine!
