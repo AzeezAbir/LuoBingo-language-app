@@ -2,7 +2,16 @@ import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 
 // 1. Add 'isMatched' to the props list
-function Card({ text, id, side, isActive, isMatched, onSelect }) {
+function Card({
+  text,
+  id,
+  side,
+  isActive,
+  isMatched,
+  isWrong,
+  isSuccess,
+  onSelect,
+}) {
   return (
     <Box
       onClick={() => onSelect(id, side)}
@@ -10,6 +19,8 @@ function Card({ text, id, side, isActive, isMatched, onSelect }) {
       sx={{
         p: 2,
         mb: 2,
+        // B. Visuals: Matched takes priority over Active
+        transition: "all 0.2s ease-in-out", // Makes the red/green flash smoothly
         borderRadius: 2,
         textAlign: "center",
 
@@ -22,20 +33,41 @@ function Card({ text, id, side, isActive, isMatched, onSelect }) {
         // B. Visuals: Matched takes priority over Active
         borderWidth: "2px",
         borderStyle: "solid",
-        borderColor: isMatched
-          ? "transparent" // Hide border when done (or use #202F36 for subtle)
-          : isActive
-            ? "#1CB0F6" // Bright Blue (Active)
-            : "#28343B", // Gray (Default)
+        borderColor: isWrong
+          ? "#ea2b2b"
+          : isSuccess
+            ? "#58CC02"
+            : isMatched
+              ? "transparent"
+              : isActive
+                ? "#1CB0F6"
+                : "#28343B",
 
         // C. Background & Opacity
-        bgcolor: "#37464F",
-        opacity: isMatched ? 0.4 : 1, // Dim the card significantly when matched
-        color: isMatched ? "#52656F" : "white", // Gray out the text
-
+        // C. Background & Opacity
+        bgcolor: isWrong
+          ? "rgba(234, 43, 43, 0.15)"
+          : isSuccess
+            ? "rgba(88, 204, 2, 0.15)"
+            : "#37464F",
+        opacity: isMatched ? 0.4 : 1,
+        color: isWrong
+          ? "#ea2b2b"
+          : isSuccess
+            ? "#58CC02"
+            : isMatched
+              ? "#52656F"
+              : "white",
         "&:hover": {
-          // Only apply hover color if it's NOT matched (handled by pointer-events: none above, but safe to keep)
-          borderColor: isActive ? "#1CB0F6" : "#49C0F8",
+          borderColor: isWrong
+            ? "#ea2b2b" // Keep it Red on hover if wrong
+            : isSuccess
+              ? "#58CC02" // 🟢 Force it to be Green on hover if successful!
+              : isMatched
+                ? "transparent" // Ignore hover if already matched
+                : isActive
+                  ? "#1CB0F6" // Active cyan hover
+                  : "#49C0F8", // Default light cyan hover
         },
       }}
     >

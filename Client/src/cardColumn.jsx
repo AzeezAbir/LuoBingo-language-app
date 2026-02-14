@@ -7,6 +7,8 @@ export default function CardColumn({
   onSelect,
   selection,
   matched,
+  wrongPair,
+  successPair,
 }) {
   return (
     <Box>
@@ -20,6 +22,8 @@ export default function CardColumn({
           isActive={selection?.id === item.id && selection?.side === field}
           // 4. New: Check if this card's ID is in the matched array
           isMatched={matched.includes(item.id)}
+          isWrong={wrongPair && wrongPair.includes(item.id)}
+          isSuccess={successPair && successPair.includes(item.id)}
         />
       ))}
     </Box>

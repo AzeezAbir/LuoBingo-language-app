@@ -1,48 +1,13 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import "./App.css";
+import { Box, Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import Cont from "./container";
 
-const data = [
-  {
-    id: 1,
-    kan: "ಗಿಳಿ",
-    wrd: "Parrot",
-    dkh: "Tota",
-    description: "Main Character",
-  },
-  {
-    id: 2,
-    kan: "ಮರ",
-    wrd: "Tree",
-    dkh: "Jhadh",
-    description: "where parrot lived",
-  },
-  {
-    id: 3,
-    kan: "ಬೇಡ",
-    wrd: "Hunter",
-    dkh: "Shikari",
-    description: "the antagonist",
-  },
-  {
-    id: 4,
-    kan: "ಬಾಣ",
-    wrd: "Arrow",
-    dkh: "Teer",
-    description: "used by the hunter",
-  },
-  {
-    id: 5,
-    kan: "ವಿಷ",
-    wrd: "Poison",
-    dkh: "Zeher",
-    description: "was on the arrow",
-  },
-];
-
-// Helper function to shuffle an array (Fisher-Yates algorithm)
+// Move shuffleArray outside or inside, but let's keep it here
 const shuffleArray = (array) => {
-  const newArray = [...array]; // Make a copy so we don't mutate original
+  const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
@@ -51,42 +16,112 @@ const shuffleArray = (array) => {
 };
 
 function App() {
+  // --- Define States ---
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [isLocked, setIsLocked] = useState(false); // Disables clicks
+  const [wrongPair, setWrongPair] = useState([]); // Remembers the wrong IDs to color them red
+  const [successPair, setSuccessPair] = useState([]);
+  const [columns, setColumns] = useState({ left: [], right: [] });
   const [selection, setSelection] = useState({ id: null, side: null });
   const [matched, setMatched] = useState([]);
 
-  // 1. New State for our two columns
-  const [columns, setColumns] = useState({ left: [], right: [] });
-
-  // 2. Shuffle data ONCE when app mounts
+  // --- The Fetch Hook ---
   useEffect(() => {
-    setColumns({
-      left: shuffleArray(data),
-      right: shuffleArray(data),
-    });
-  }, []);
+    axios
+      .get("http://localhost:5000/api/words")
+      .then((res) => {
+        const serverWords = res.data;
+        console.log("Al-Hamdu Lillah, data is here:", serverWords);
+
+        setData(serverWords);
+        setColumns({
+          left: shuffleArray(serverWords),
+          right: shuffleArray(serverWords),
+        });
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Oh no, something went wrong:", err);
+        setIsLoading(false);
+      });
+  }, []); // Run once on mount
 
   const handleSelect = (id, side) => {
+    // 0. The Disable Check: If the board is locked, ignore the click
+    if (isLocked) return;
+
+    // 1. First click or clicking same side
     if (selection.side === null || selection.side === side) {
       setSelection({ id: id, side: side });
       return;
     }
 
+    // 2. Checking the Match
     if (id === selection.id) {
-      setMatched([...matched, id]);
-      setSelection({ id: null, side: null });
+      // ✅ CORRECT
+      setIsLocked(true);
+      setSuccessPair([selection.id, id]);
+
+      setTimeout(() => {
+        setMatched([...matched, id]);
+        setSuccessPair([]);
+        setSelection({ id: null, side: null });
+        setIsLocked(false);
+      }, 500); // 500ms green flash delay
     } else {
-      setSelection({ id: id, side: side });
+      // ❌ WRONG
+      setIsLocked(true); // Disable the board
+      setWrongPair([selection.id, id]); // Save both IDs to turn them red
+
+      // Wait for 800ms, then UNDO everything
+      setTimeout(() => {
+        setWrongPair([]); // Remove the red color
+        setSelection({ id: null, side: null }); // Undo the selection
+        setIsLocked(false); // Re-enable the board
+      }, 800);
     }
   };
 
+  // --- Handle Loading (The MUI Way) ---
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh", // Centers it vertically in the viewport
+        }}
+      >
+        <CircularProgress size={60} thickness={4} sx={{ color: "#58CC02" }} />
+        <Typography
+          variant="h6"
+          sx={{
+            mt: 2,
+            color: "#58CC02",
+            fontWeight: "bold",
+            fontFamily: "monospace",
+          }}
+        >
+          Sabar... Loading Lesson
+        </Typography>
+      </Box>
+    );
+  }
+
   return (
     <Cont
-      // 3. Pass the two shuffled lists separately
       leftData={columns.left}
       rightData={columns.right}
       onSelect={handleSelect}
       selection={selection}
       matched={matched}
+      wrongPair={wrongPair}
+      successPair={successPair}
+      isLocked={isLocked}
     />
   );
 }
