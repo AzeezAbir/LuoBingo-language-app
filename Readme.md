@@ -1,5 +1,5 @@
 Demonstration:
-![match](./Client/src/assets/match.gif)
+![match](./Client/src/assets/MatchWords.gif)
 
 Features can be added:
 True or false
