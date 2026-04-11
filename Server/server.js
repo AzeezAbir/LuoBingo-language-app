@@ -11,7 +11,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// Your temporary database (until we connect MongoDB)
+// Temporary database (until we connect MongoDB)
 const data = [
   {
     id: 1,
