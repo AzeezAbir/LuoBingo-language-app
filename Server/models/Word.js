@@ -8,4 +8,4 @@ const wordSchema = new mongoose.Schema({
   alt_words: { type: [String], default: [] },
 });
 
-export default mongoose.model("Word", wordSchema); // 👈 Change this line ich!
+export default mongoose.model("Word", wordSchema);
