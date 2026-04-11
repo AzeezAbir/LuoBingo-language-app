@@ -1,7 +1,6 @@
 import Cont from "./container";
 import { useState } from "react";
 import { Button } from "@mui/material";
-// import "./reset.css";
 
 export default function Reset({ onRestart }) {
   return (

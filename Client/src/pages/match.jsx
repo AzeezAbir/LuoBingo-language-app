@@ -5,12 +5,9 @@ import "../App.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Cont from "../components/container";
 import Reset from "../components/Reset";
-import Shuffle from "../components/Shuffle";
-// import Shuffle from "./Shuffle";
-// import Parent from "./Parent";
 
 export default function Match() {
-  const [data, setData] = useState([]); //
+  const [data, setData] = useState([]);
   const [shuffle, setShuffle] = useState("");
   const [isLocked, setIsLocked] = useState(false); // Disables clicks
   const [isLoading, setIsLoading] = useState(true);
@@ -60,20 +57,18 @@ export default function Match() {
     setWrongPair([]);
     setSuccessPair([]);
   };
-  // You can Move shuffleArray outside or inside, but let's keep it here
-  // --- Define States ---
 
   const handleSelect = (id, side) => {
-    // 0. The Disable Check: If the board is locked, ignore the click
+    // If the board is locked, ignore the click
     if (isLocked) return;
 
-    // 1. First click or clicking same side
+    // First click or clicking same side
     if (selection.side === null || selection.side === side) {
       setSelection({ id, side });
       return;
     }
 
-    // 2. Checking the Match
+    // Checking the Match
     if (id === selection.id) {
       // CORRECT
       setIsLocked(true);
@@ -128,7 +123,6 @@ export default function Match() {
   }
   return (
     <>
-      {/* <Cont setValue={setValue} /> */}
       <Cont
         leftData={columns.left}
         rightData={columns.right}

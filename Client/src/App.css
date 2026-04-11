@@ -48,12 +48,10 @@ button {
 .card {
   height: 3vw;
   width: 50%;
-  /* width: "calc(50% - 10px)"; */
   background-color: #2e3c44;
   border-color: #37464f;
   color: #fff;
   padding: 0;
-  /* padding-inline: 1em; */
   padding-block: 0.5em;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -63,21 +61,8 @@ button {
   align-items: center;
 }
 
-/* .card:hover {
-  border-color: #1976d2;
-  background-color: #2e3c44;
-  cursor: pointer;
-} */
-
-/* .dkh-row{
-  margin-right: 20vw;
-} */
-
 .slate {
   width: 45vw;
   justify-content: space-between;
   display: flex;
-  /* align-items: center; */
-  /* margin-left: 0.00001vw; */
-  /* margin-right: ; */
 }

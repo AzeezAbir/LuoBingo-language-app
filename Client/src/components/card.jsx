@@ -62,7 +62,7 @@ function Card({
           borderColor: isWrong
             ? "#ea2b2b" // Keep it Red on hover if wrong
             : isSuccess
-              ? "#58CC02" // 🟢 Force it to be Green on hover if successful!
+              ? "#58CC02" //  Force it to be Green on hover if successful!
               : isMatched
                 ? "transparent" // Ignore hover if already matched
                 : isActive
