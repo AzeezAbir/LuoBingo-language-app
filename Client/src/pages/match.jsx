@@ -8,7 +8,6 @@ import Reset from "../components/Reset";
 
 export default function Match() {
   const [data, setData] = useState([]);
-  const [shuffle, setShuffle] = useState("");
   const [isLocked, setIsLocked] = useState(false); // Disables clicks
   const [isLoading, setIsLoading] = useState(true);
   const [wrongPair, setWrongPair] = useState([]); // Remembers the wrong IDs to color them red
@@ -132,7 +131,6 @@ export default function Match() {
         wrongPair={wrongPair}
         successPair={successPair}
         isLocked={isLocked}
-        setShuffle={setShuffle}
       />
       <Reset onRestart={handleRestart} />
     </>
