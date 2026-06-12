@@ -5,6 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm install --prefix Client",
+    "build": "npm run build --prefix Client",
     "dev": "concurrently \"npm run dev --prefix Client\" \"nodemon Server/server.js\"",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd Server && npm run dev",
