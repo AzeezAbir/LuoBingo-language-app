@@ -11,6 +11,21 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
+// Database connection Setup
+const MONGO_URI = process.env.MONGO_URI;
+if (MONGO_URI) {
+  mongoose
+    .connect(MONGO_URI)
+    .then(() => {
+      console.log("Connected to MongoDB database successfully! 🍃");
+    })
+    .catch((err) => {
+      console.error("MongoDB connection error:", err);
+    });
+} else {
+  console.log("MONGO_URI not found in env variables. Using local fallback database.");
+}
+
 // Temporary database (until we connect MongoDB)
 const data = [
   {
@@ -55,6 +70,10 @@ app.get("/", (req, res) => {
 }); // The API Endpoint: The "door" React will knock on
 app.get("/api/words", async (req, res) => {
   try {
+    // Return local fallback data immediately if database is not connected
+    if (!MONGO_URI || mongoose.connection.readyState !== 1) {
+      return res.json(data);
+    }
     const dbWords = await Word.find();
     if (dbWords.length === 0) {
       return res.json(data);

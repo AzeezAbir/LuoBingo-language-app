@@ -6,6 +6,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Cont from "../components/container";
 import Reset from "../components/Reset";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 export default function Match() {
   const [data, setData] = useState([]);
   const [isLocked, setIsLocked] = useState(false); // Disables clicks
@@ -27,7 +29,7 @@ export default function Match() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/words")
+      .get(`${API_URL}/api/words`)
       .then((res) => {
         const serverWords = res.data;
         console.log("Al-Hamdu Lillah, data is here:", serverWords);
