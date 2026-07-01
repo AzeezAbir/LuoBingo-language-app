@@ -1,5 +1,16 @@
 import { Box } from "@mui/material";
 import Card from "./card";
+import { Word, Selection } from "../types";
+
+interface CardColumnProps {
+  data: Word[];
+  field: "dkh" | "kan";
+  onSelect: (id: string | number, side: "dkh" | "kan") => void;
+  selection: Selection;
+  matched: (string | number)[];
+  wrongPair: (string | number)[];
+  successPair: (string | number)[];
+}
 
 export default function CardColumn({
   data,
@@ -9,7 +20,7 @@ export default function CardColumn({
   matched,
   wrongPair,
   successPair,
-}) {
+}: CardColumnProps) {
   return (
     <Box>
       {data.map((item) => (

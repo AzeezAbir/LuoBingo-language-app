@@ -5,20 +5,21 @@ import "../App.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Cont from "../components/container";
 import Reset from "../components/Reset";
+import { Word, Selection } from "../types";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export default function Match() {
-  const [data, setData] = useState([]);
-  const [isLocked, setIsLocked] = useState(false); // Disables clicks
-  const [isLoading, setIsLoading] = useState(true);
-  const [wrongPair, setWrongPair] = useState([]); // Remembers the wrong IDs to color them red
-  const [successPair, setSuccessPair] = useState([]);
-  const [columns, setColumns] = useState({ left: [], right: [] });
-  const [selection, setSelection] = useState({ id: null, side: null });
-  const [matched, setMatched] = useState([]);
+  const [data, setData] = useState<Word[]>([]);
+  const [isLocked, setIsLocked] = useState<boolean>(false); // Disables clicks
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [wrongPair, setWrongPair] = useState<(string | number)[]>([]); // Remembers the wrong IDs to color them red
+  const [successPair, setSuccessPair] = useState<(string | number)[]>([]);
+  const [columns, setColumns] = useState<{ left: Word[]; right: Word[] }>({ left: [], right: [] });
+  const [selection, setSelection] = useState<Selection>({ id: null, side: null });
+  const [matched, setMatched] = useState<(string | number)[]>([]);
 
-  const shuffleArray = (array) => {
+  const shuffleArray = (array: Word[]) => {
     const newArray = [...array];
     for (let i = newArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -59,7 +60,7 @@ export default function Match() {
     setSuccessPair([]);
   };
 
-  const handleSelect = (id, side) => {
+  const handleSelect = (id: string | number, side: "dkh" | "kan") => {
     // If the board is locked, ignore the click
     if (isLocked) return;
 
@@ -84,7 +85,7 @@ export default function Match() {
     } else {
       //  WRONG
       setIsLocked(true); // Disable the board
-      setWrongPair([selection.id, id]); // Save both IDs to turn them red
+      setWrongPair([selection.id!, id]); // Save both IDs to turn them red
 
       // Wait for 800ms, then UNDO everything
       setTimeout(() => {
@@ -132,7 +133,6 @@ export default function Match() {
         matched={matched}
         wrongPair={wrongPair}
         successPair={successPair}
-        isLocked={isLocked}
       />
       <Reset onRestart={handleRestart} />
     </>

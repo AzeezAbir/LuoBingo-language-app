@@ -1,8 +1,10 @@
-import Cont from "./container";
-import { useState } from "react";
 import { Button } from "@mui/material";
 
-export default function Reset({ onRestart }) {
+interface ResetProps {
+  onRestart: () => void;
+}
+
+export default function Reset({ onRestart }: ResetProps) {
   return (
     <Button onClick={onRestart} variant="contained" className="reset">
       Restart

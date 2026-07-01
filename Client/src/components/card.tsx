@@ -1,5 +1,16 @@
 import { Box, Typography } from "@mui/material";
 
+interface CardProps {
+  text: string;
+  id: string | number;
+  side: "dkh" | "kan";
+  isActive: boolean;
+  isMatched: boolean;
+  isWrong: boolean;
+  isSuccess: boolean;
+  onSelect: (id: string | number, side: "dkh" | "kan") => void;
+}
+
 // 1. Add 'isMatched' to the props list
 function Card({
   text,
@@ -10,7 +21,7 @@ function Card({
   isWrong,
   isSuccess,
   onSelect,
-}) {
+}: CardProps) {
   return (
     <Box
       onClick={() => onSelect(id, side)}
