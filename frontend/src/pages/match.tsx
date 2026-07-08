@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
-import "../App.css";
+import "../styles/match.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Cont from "../components/container";
 import Reset from "../components/Reset";

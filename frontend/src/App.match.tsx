@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/match.css";
 import Shuffle from "./components/Shuffle";
 import Match from "./pages/match";
 
