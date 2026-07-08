@@ -1,0 +1,98 @@
+/* The Main Dark Bubble */
+.duo-bubble {
+  position: relative;
+  background-color: inherit;
+  border: 2px solid #37464f;
+  border-radius: 16px;
+  padding: 16px 24px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Space between words */
+  font-family: sans-serif; /* Use your app's font */
+}
+
+/* The Bubble Tail (Outer Border) */
+.duo-bubble::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: -14px;
+  border-style: solid;
+  border-width: 10px 14px 10px 0;
+  border-color: transparent #37464f transparent transparent;
+}
+
+/* The Bubble Tail (Inner Fill) */
+.duo-bubble::after {
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: -10px;
+  border-style: solid;
+  border-width: 8px 11px 8px 0;
+  border-color: transparent #131f24 transparent transparent;
+}
+
+/* --- THE TOOLTIP LOGIC --- */
+
+/* 1. The Anchor (This fixes your negative margin issue!) */
+.word-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* 2. The Word Itself */
+.duo-word {
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  border-bottom: 2px dashed #4b5961;
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+
+/* 3. The Hidden Tooltip Box */
+.duo-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background-color: #37464f; /* Lighter dark for contrast */
+  color: white;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+
+  /* Positioning right below the word */
+  position: absolute;
+  z-index: 10;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%); /* Keeps it perfectly centered */
+
+  transition: opacity 0.2s ease;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* 4. The Tooltip Arrow (Pointing UP at the word) */
+.duo-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%; /* Pushes it to the top edge of the tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #37464f transparent;
+}
+
+/* 5. Show tooltip when hovering over the wrapper */
+.word-wrapper:hover .duo-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.word-wrapper:hover .duo-word {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}

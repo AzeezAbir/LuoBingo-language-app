@@ -1,0 +1,13 @@
+.chapName {
+  color: blueviolet;
+  justify-content: end;
+  margin: 0;
+}
+.box {
+  padding: 0 0 0 10px;
+  /* max-width: 600px; */
+  width: 300px;
+  text-align: left;
+  display: flex;
+  justify-content: left;
+}
