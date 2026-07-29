@@ -47,7 +47,6 @@ export default function C12() {
           isSelected={selectedIndex === 1}
           fast={"Metals"}
           imageName="conductors.jpg"
-          className={selectedIndex === 1 ? "actionCardd" : ""}
         />
         <ActionAreaCard
           index={2}
@@ -55,7 +54,6 @@ export default function C12() {
           isSelected={selectedIndex === 2}
           fast={"Semiconductors"}
           imageName="semi.jpg"
-          className={selectedIndex === 2 ? "actionCardd" : ""}
         />
         <ActionAreaCard
           index={3}
@@ -63,7 +61,6 @@ export default function C12() {
           isSelected={selectedIndex === 3}
           fast={"Insulators"}
           imageName="insulators.jpg"
-          className={selectedIndex === 3 ? "actionCardd" : ""}
         />
       </span>
       <br />

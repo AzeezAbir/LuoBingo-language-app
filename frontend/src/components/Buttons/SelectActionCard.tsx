@@ -49,7 +49,7 @@ function SelectActionCard() {
         {cards.map((card, index) => (
           <>
             <Card
-              key={cards.id}
+              key={card.id}
               sx={{
                 backgroundColor: "blue",
                 width: "250px",

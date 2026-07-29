@@ -4,15 +4,13 @@ import ListItemText from "@mui/material/ListItemText";
 export default function Ul() {
   return (
     <>
-      <List dense={dense}>
-        {generate(
+      <List dense={false}>
           <ListItem>
             <ListItemText
               primary="Single-line item"
-              secondary={secondary ? "Secondary text" : null}
+              secondary={null}
             />
-          </ListItem>,
-        )}
+          </ListItem>
       </List>
     </>
   );

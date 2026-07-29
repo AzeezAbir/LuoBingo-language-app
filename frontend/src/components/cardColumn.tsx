@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import Card from "./card";
+import Card from "./Card";
 import { Word, Selection } from "../types";
 
 interface CardColumnProps {

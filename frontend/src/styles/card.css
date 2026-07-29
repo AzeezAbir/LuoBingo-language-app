@@ -1,0 +1,66 @@
+.card {
+  padding: 16px; /* p: 2 (MUI spacing 8px * 2) */
+  margin-bottom: 16px; /* mb: 2 (MUI spacing 8px * 2) */
+  transition: all 0.2s ease-in-out;
+  border-radius: 8px; /* borderRadius: 2 (MUI shape.borderRadius 4px * 2) */
+  text-align: center;
+  cursor: pointer;
+  pointer-events: auto;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #28343b;
+  background-color: #37464f;
+  opacity: 1;
+  color: white;
+}
+
+/* Hover effect for default state */
+.card:hover {
+  border-color: #49c0f8;
+}
+
+/* Active State */
+.card.active {
+  border-color: #1cb0f6;
+}
+
+.card.active:hover {
+  border-color: #1cb0f6;
+}
+
+/* Matched State */
+.card.matched {
+  cursor: default;
+  pointer-events: none;
+  border-color: transparent;
+  opacity: 0.4;
+  color: #52656f;
+}
+
+.card.matched:hover {
+  border-color: transparent;
+}
+
+/* Wrong State */
+.card.wrong {
+  border-color: #ea2b2b;
+  background-color: rgba(234, 43, 43, 0.15);
+  color: #ea2b2b;
+}
+
+.card.wrong:hover {
+  border-color: #ea2b2b;
+}
+
+/* Success State */
+.card.success {
+  border-color: #58cc02;
+  background-color: rgba(88, 204, 2, 0.15);
+  color: #58cc02;
+}
+
+.card.success:hover {
+  border-color: #58cc02;
+}
+
+/*         cursor: isMatched ? "default" : "pointer", */

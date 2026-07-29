@@ -8,3 +8,4 @@ const router = express.Router();
 router.get("/:chapterId", getChapterQuestions);
 
 export default router;
+//API endpoint

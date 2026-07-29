@@ -1,30 +1,43 @@
+import React from "react";
 import { Box, Typography } from "@mui/material";
 
 interface CardProps {
-  text: string;
-  id: string | number;
-  side: "dkh" | "kan";
-  isActive: boolean;
-  isMatched: boolean;
-  isWrong: boolean;
-  isSuccess: boolean;
-  onSelect: (id: string | number, side: "dkh" | "kan") => void;
+  text?: string;
+  children?: React.ReactNode;
+  id?: string | number;
+  side?: "dkh" | "kan";
+  isActive?: boolean;
+  isMatched?: boolean;
+  isWrong?: boolean;
+  isSuccess?: boolean;
+  onSelect?: (id: string | number, side: "dkh" | "kan") => void;
+  onClick?: () => void;
 }
 
 // 1. Add 'isMatched' to the props list
 function Card({
   text,
+  children,
   id,
   side,
-  isActive,
-  isMatched,
-  isWrong,
-  isSuccess,
+  isActive = false,
+  isMatched = false,
+  isWrong = false,
+  isSuccess = false,
   onSelect,
+  onClick,
 }: CardProps) {
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else if (onSelect && id !== undefined && side !== undefined) {
+      onSelect(id, side);
+    }
+  };
+
   return (
     <Box
-      onClick={() => onSelect(id, side)}
+      onClick={handleClick}
       className="card"
       sx={{
         p: 2,
@@ -54,7 +67,6 @@ function Card({
                 : "#28343B",
 
         // C. Background & Opacity
-        // C. Background & Opacity
         bgcolor: isWrong
           ? "rgba(234, 43, 43, 0.15)"
           : isSuccess
@@ -81,7 +93,7 @@ function Card({
         },
       }}
     >
-      <Typography variant="h6">{text}</Typography>
+      <Typography variant="h6">{text || children}</Typography>
     </Box>
   );
 }
