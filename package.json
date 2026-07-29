@@ -55,5 +55,8 @@
       "esbuild",
       "lightningcss"
     ]
+  },
+  "overrides": {
+    "tar": "^7.5.22"
   }
 }
