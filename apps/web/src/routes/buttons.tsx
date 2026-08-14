@@ -1,6 +1,9 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import { createFileRoute } from "@tanstack/react-router";
 
+import Close from "../components/B/Close";
+
+// @ts-expect-error - IDE type-resolution mismatch
 export const Route = createFileRoute("/buttons")({
   component: RouteComponent,
 });
@@ -10,7 +13,10 @@ export const Route = createFileRoute("/buttons")({
 function RouteComponent() {
   return (
     <div className="flex flex-col items-center justify-center gap-4 p-4">
-      <h1>Buttons</h1>
+      <h1>
+        <Close />
+        Buttons
+      </h1>
       <div className="p-4 space-y-4 flex flex-col max-w-[200px] gap-4 items-center justify-center">
         <Button variant="default">Default</Button>
         <Button variant="primary">Primary</Button>

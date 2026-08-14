@@ -10,14 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SplatRouteImport } from './routes/$'
+import { Route as R404RouteImport } from './routes/404'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ButtonsRouteImport } from './routes/buttons'
 import { Route as LearnRouteImport } from './routes/learn'
-import { Route as EtypePickRouteImport } from './routes/etype/pick'
+import { Route as etypePickRouteImport } from './routes/(etype)/pick'
+import { Route as ApiPick1RouteImport } from './routes/api/pick1'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -35,48 +48,90 @@ const LearnRoute = LearnRouteImport.update({
   path: '/learn',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EtypePickRoute = EtypePickRouteImport.update({
-  id: '/etype/pick',
-  path: '/etype/pick',
+const etypePickRoute = etypePickRouteImport.update({
+  id: '/(etype)/pick',
+  path: '/pick',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPick1Route = ApiPick1RouteImport.update({
+  id: '/api/pick1',
+  path: '/api/pick1',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/buttons': typeof ButtonsRoute
   '/learn': typeof LearnRoute
-  '/etype/pick': typeof EtypePickRoute
+  '/pick': typeof etypePickRoute
+  '/api/pick1': typeof ApiPick1Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/buttons': typeof ButtonsRoute
   '/learn': typeof LearnRoute
-  '/etype/pick': typeof EtypePickRoute
+  '/pick': typeof etypePickRoute
+  '/api/pick1': typeof ApiPick1Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/buttons': typeof ButtonsRoute
   '/learn': typeof LearnRoute
-  '/etype/pick': typeof EtypePickRoute
+  '/(etype)/pick': typeof etypePickRoute
+  '/api/pick1': typeof ApiPick1Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/buttons' | '/learn' | '/etype/pick'
+  fullPaths:
+    | '/'
+    | '/$'
+    | '/404'
+    | '/about'
+    | '/buttons'
+    | '/learn'
+    | '/pick'
+    | '/api/pick1'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/buttons' | '/learn' | '/etype/pick'
-  id: '__root__' | '/' | '/about' | '/buttons' | '/learn' | '/etype/pick'
+  to:
+    | '/'
+    | '/$'
+    | '/404'
+    | '/about'
+    | '/buttons'
+    | '/learn'
+    | '/pick'
+    | '/api/pick1'
+  id:
+    | '__root__'
+    | '/'
+    | '/$'
+    | '/404'
+    | '/about'
+    | '/buttons'
+    | '/learn'
+    | '/(etype)/pick'
+    | '/api/pick1'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
+  R404Route: typeof R404Route
   AboutRoute: typeof AboutRoute
   ButtonsRoute: typeof ButtonsRoute
   LearnRoute: typeof LearnRoute
-  EtypePickRoute: typeof EtypePickRoute
+  etypePickRoute: typeof etypePickRoute
+  ApiPick1Route: typeof ApiPick1Route
 }
 
 declare module '@tanstack/react-router' {
@@ -86,6 +141,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -109,11 +178,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/etype/pick': {
-      id: '/etype/pick'
-      path: '/etype/pick'
-      fullPath: '/etype/pick'
-      preLoaderRoute: typeof EtypePickRouteImport
+    '/(etype)/pick': {
+      id: '/(etype)/pick'
+      path: '/pick'
+      fullPath: '/pick'
+      preLoaderRoute: typeof etypePickRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/pick1': {
+      id: '/api/pick1'
+      path: '/api/pick1'
+      fullPath: '/api/pick1'
+      preLoaderRoute: typeof ApiPick1RouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -121,10 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
+  R404Route: R404Route,
   AboutRoute: AboutRoute,
   ButtonsRoute: ButtonsRoute,
   LearnRoute: LearnRoute,
-  EtypePickRoute: EtypePickRoute,
+  etypePickRoute: etypePickRoute,
+  ApiPick1Route: ApiPick1Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

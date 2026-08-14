@@ -8,6 +8,3 @@ export const users = sqliteTable('users', {
     () => new Date(),
   ),
 })
-
-export type User = typeof users.$inferSelect
-export type NewUser = typeof users.$inferInsert

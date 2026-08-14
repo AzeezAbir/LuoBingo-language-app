@@ -2,7 +2,8 @@
 @import "normalize.css";
 @font-face {
   font-family: "DIN Next Rounded";
-  src: url("./assets/Font/DIN Next Rounded LT W01 Regular.woff2") format("woff2");
+  src: url("./assets/Font/DIN Next Rounded LT W01 Regular.woff2")
+    format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -17,11 +18,14 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: "DIN Next Rounded", "Nunito", "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans:
+    "DIN Next Rounded", "Nunito", "Manrope", ui-sans-serif, system-ui,
+    -apple-system, sans-serif;
   --color-bg-dark: #131f24;
   --color-card-dark: #131f24;
   --color-card-hover: #202f36;
   --color-card-border: #37464f;
+  --color-slate-dark: #37464f;
   --color-brand-blue: #1cb0f6;
   --color-brand-green: #58cc02;
   --color-brand-yellow: #ffc800;
@@ -68,7 +72,7 @@
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
+  --chart-2: rgb(115, 115, 115);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
@@ -138,7 +142,8 @@ body,
 body {
   margin: 0;
   color: var(--sea-ink);
-  font-family: "DIN Next Rounded", "Nunito", var(--font-sans), sans-serif !important;
+  font-family:
+    "DIN Next Rounded", "Nunito", var(--font-sans), sans-serif !important;
   background-color: var(--bg-base);
   /* background:
     radial-gradient(1100px 620px at -8% -10%, var(--hero-a), transparent 58%),
@@ -193,7 +198,7 @@ a {
 }
 
 a:hover {
-  color: #246f76;
+  /* color: #246f76; */
 }
 
 code {
@@ -576,6 +581,7 @@ a {
   --color-card-dark: #131f24;
   --color-card-hover: #202f36;
   --color-card-border: #37464f;
+  --color-slate-dark: #37464f;
   --color-card-selected: #1cb0f6;
 
   --color-brand-blue: #1cb0f6;
@@ -627,7 +633,7 @@ a {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
@@ -637,4 +643,10 @@ a {
   }
 }
 
+.close {
+  color: var(--color-slate-dark);
+}
 
+.close:hover {
+  color: #ea2b2b;
+}

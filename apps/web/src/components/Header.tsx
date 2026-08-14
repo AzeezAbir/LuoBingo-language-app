@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import ThemeToggle from "./ThemeToggle";
 import { Button } from "./ui/button";
-import logo from "../assets/LuoBingo.png";
+import logo from "../assets/logo/LuoBingo.svg";
 
 export default function Header() {
   return (
@@ -9,18 +9,14 @@ export default function Header() {
       <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
         <h2 className="m-0 flex-shrink-0 text-base font-semibold tracking-tight">
           <Link to="/">
-            <img
-              src={logo}
-              className="h-20 w-40 rounded-[30px]"
-              alt="logo"
-            />
+            <img src={logo} className="h-20 w-40 rounded-[30px]" alt="logo" />
           </Link>
         </h2>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
           <Link to="/buttons">
             <Button variant="secondary" size="sm">
-              Get Started
+              Buttons page
             </Button>
           </Link>
           <a
