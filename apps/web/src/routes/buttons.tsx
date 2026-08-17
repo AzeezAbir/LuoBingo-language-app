@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import Close from "../components/B/Close";
 
-// @ts-expect-error - IDE type-resolution mismatch
+
 export const Route = createFileRoute("/buttons")({
   component: RouteComponent,
 });

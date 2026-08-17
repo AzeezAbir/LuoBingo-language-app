@@ -7,7 +7,9 @@ function App() {
   return (
     <>
       <Header />
-      <Link to="/learn">Get Started</Link>
+      <main className="demo-center">
+        <Link to="/learn">Get Started</Link>
+      </main>
     </>
   );
 }
