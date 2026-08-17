@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import ThemeToggle from "./ThemeToggle";
-import { Button } from "./ui/button";
 import logo from "../assets/logo/LuoBingo.svg";
 
 export default function Header() {
@@ -14,11 +13,6 @@ export default function Header() {
         </h2>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
-          <Link to="/buttons">
-            <Button variant="secondary" size="sm">
-              Buttons page
-            </Button>
-          </Link>
           <a
             href="https://github.com/AzeezAbir/LuoBingo-language-app"
             target="_blank"
