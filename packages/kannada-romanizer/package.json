@@ -1,0 +1,13 @@
+{
+  "name": "@luobingo/kannada-romanizer",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Appends Romanized English next to Kannada text",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@indic-transliteration/sanscript": "^1.3.3"
+  }
+}
