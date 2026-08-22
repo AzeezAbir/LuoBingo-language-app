@@ -10,7 +10,8 @@
     "preview": {
       "distribution": "internal",
       "env": {
-        "EAS_BUILD_WORKSPACE_ROOT": "../.."
+        "EAS_BUILD_WORKSPACE_ROOT": "../..",
+        "EXPO_NODE_OPTIONS": "--max-old-space-size=4096"
       },
       "android": {
         "buildType": "apk"
