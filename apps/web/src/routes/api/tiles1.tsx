@@ -10,28 +10,18 @@ export const Route = createFileRoute("/api/tiles1")({
           const db = client.db("LuoBingo");
           const tiles = await db.collection("tiles").find({}).toArray();
           
-          if (tiles.length === 0) {
-            // Return fallback mock data in case DB is not seeded yet
+          if (!tiles || tiles.length === 0) {
             return new Response(
-              JSON.stringify([
-                {
-                  questionText: "Which of the following is Tota?",
-                  options: [
-                    { index: 1, fast: "Cow", imageURL: "/src/assets/image.png" },
-                    { index: 2, fast: "Tota", imageURL: "/src/assets/image.png" },
-                    { index: 3, fast: "Deer", imageURL: "/src/assets/image.png" },
-                    { index: 4, fast: "Indira", imageURL: "/src/assets/image.png" }
-                  ],
-                  correctAnswer: 2
-                }
-              ]),
+              JSON.stringify({ error: "No tiles found in database" }),
               {
+                status: 404,
                 headers: { "Content-Type": "application/json" },
               }
             );
           }
 
           return new Response(JSON.stringify(tiles), {
+            status: 200,
             headers: { "Content-Type": "application/json" },
           });
         } catch (error: any) {
@@ -40,7 +30,6 @@ export const Route = createFileRoute("/api/tiles1")({
             JSON.stringify({
               error: "Failed to fetch tiles data",
               message: error.message,
-              stack: error.stack,
             }),
             {
               status: 500,

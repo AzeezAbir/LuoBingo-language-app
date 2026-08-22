@@ -1,5 +1,5 @@
 import Card from "./card";
-import type { Word, Selection } from "./container";
+import type { Word, Selection } from "@luobingo/shared";
 
 interface CardColumnProps {
   data: Word[];

@@ -10,27 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SplatRouteImport } from './routes/$'
-import { Route as R404RouteImport } from './routes/404'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ButtonsRouteImport } from './routes/buttons'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as LearnRouteImport } from './routes/learn'
-import { Route as etypePickRouteImport } from './routes/(etype)/pick'
+import { Route as etypeMatchRouteImport } from './routes/(etype)/match'
+import { Route as etypeMcqRouteImport } from './routes/(etype)/mcq'
+import { Route as etypeTilesRouteImport } from './routes/(etype)/tiles'
+import { Route as etypeTranslateRouteImport } from './routes/(etype)/translate'
+import { Route as ApiMatch1RouteImport } from './routes/api/match1'
 import { Route as ApiPick1RouteImport } from './routes/api/pick1'
+import { Route as ApiTiles1RouteImport } from './routes/api/tiles1'
+import { Route as ApiTranslate1RouteImport } from './routes/api/translate1'
+import { Route as LessonsLessonIdRouteImport } from './routes/lessons/$lessonId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SplatRoute = SplatRouteImport.update({
-  id: '/$',
-  path: '/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R404Route = R404RouteImport.update({
-  id: '/404',
-  path: '/404',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -43,14 +39,39 @@ const ButtonsRoute = ButtonsRouteImport.update({
   path: '/buttons',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearnRoute = LearnRouteImport.update({
   id: '/learn',
   path: '/learn',
   getParentRoute: () => rootRouteImport,
 } as any)
-const etypePickRoute = etypePickRouteImport.update({
-  id: '/(etype)/pick',
-  path: '/pick',
+const etypeMatchRoute = etypeMatchRouteImport.update({
+  id: '/(etype)/match',
+  path: '/match',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const etypeMcqRoute = etypeMcqRouteImport.update({
+  id: '/(etype)/mcq',
+  path: '/mcq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const etypeTilesRoute = etypeTilesRouteImport.update({
+  id: '/(etype)/tiles',
+  path: '/tiles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const etypeTranslateRoute = etypeTranslateRouteImport.update({
+  id: '/(etype)/translate',
+  path: '/translate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMatch1Route = ApiMatch1RouteImport.update({
+  id: '/api/match1',
+  path: '/api/match1',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPick1Route = ApiPick1RouteImport.update({
@@ -58,80 +79,137 @@ const ApiPick1Route = ApiPick1RouteImport.update({
   path: '/api/pick1',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiTiles1Route = ApiTiles1RouteImport.update({
+  id: '/api/tiles1',
+  path: '/api/tiles1',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTranslate1Route = ApiTranslate1RouteImport.update({
+  id: '/api/translate1',
+  path: '/api/translate1',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LessonsLessonIdRoute = LessonsLessonIdRouteImport.update({
+  id: '/lessons/$lessonId',
+  path: '/lessons/$lessonId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/$': typeof SplatRoute
-  '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/buttons': typeof ButtonsRoute
+  '/demo': typeof DemoRoute
   '/learn': typeof LearnRoute
-  '/pick': typeof etypePickRoute
+  '/match': typeof etypeMatchRoute
+  '/mcq': typeof etypeMcqRoute
+  '/tiles': typeof etypeTilesRoute
+  '/translate': typeof etypeTranslateRoute
+  '/api/match1': typeof ApiMatch1Route
   '/api/pick1': typeof ApiPick1Route
+  '/api/tiles1': typeof ApiTiles1Route
+  '/api/translate1': typeof ApiTranslate1Route
+  '/lessons/$lessonId': typeof LessonsLessonIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/$': typeof SplatRoute
-  '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/buttons': typeof ButtonsRoute
+  '/demo': typeof DemoRoute
   '/learn': typeof LearnRoute
-  '/pick': typeof etypePickRoute
+  '/match': typeof etypeMatchRoute
+  '/mcq': typeof etypeMcqRoute
+  '/tiles': typeof etypeTilesRoute
+  '/translate': typeof etypeTranslateRoute
+  '/api/match1': typeof ApiMatch1Route
   '/api/pick1': typeof ApiPick1Route
+  '/api/tiles1': typeof ApiTiles1Route
+  '/api/translate1': typeof ApiTranslate1Route
+  '/lessons/$lessonId': typeof LessonsLessonIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/$': typeof SplatRoute
-  '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/buttons': typeof ButtonsRoute
+  '/demo': typeof DemoRoute
   '/learn': typeof LearnRoute
-  '/(etype)/pick': typeof etypePickRoute
+  '/(etype)/match': typeof etypeMatchRoute
+  '/(etype)/mcq': typeof etypeMcqRoute
+  '/(etype)/tiles': typeof etypeTilesRoute
+  '/(etype)/translate': typeof etypeTranslateRoute
+  '/api/match1': typeof ApiMatch1Route
   '/api/pick1': typeof ApiPick1Route
+  '/api/tiles1': typeof ApiTiles1Route
+  '/api/translate1': typeof ApiTranslate1Route
+  '/lessons/$lessonId': typeof LessonsLessonIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/$'
-    | '/404'
     | '/about'
     | '/buttons'
+    | '/demo'
     | '/learn'
-    | '/pick'
+    | '/match'
+    | '/mcq'
+    | '/tiles'
+    | '/translate'
+    | '/api/match1'
     | '/api/pick1'
+    | '/api/tiles1'
+    | '/api/translate1'
+    | '/lessons/$lessonId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/$'
-    | '/404'
     | '/about'
     | '/buttons'
+    | '/demo'
     | '/learn'
-    | '/pick'
+    | '/match'
+    | '/mcq'
+    | '/tiles'
+    | '/translate'
+    | '/api/match1'
     | '/api/pick1'
+    | '/api/tiles1'
+    | '/api/translate1'
+    | '/lessons/$lessonId'
   id:
     | '__root__'
     | '/'
-    | '/$'
-    | '/404'
     | '/about'
     | '/buttons'
+    | '/demo'
     | '/learn'
-    | '/(etype)/pick'
+    | '/(etype)/match'
+    | '/(etype)/mcq'
+    | '/(etype)/tiles'
+    | '/(etype)/translate'
+    | '/api/match1'
     | '/api/pick1'
+    | '/api/tiles1'
+    | '/api/translate1'
+    | '/lessons/$lessonId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  SplatRoute: typeof SplatRoute
-  R404Route: typeof R404Route
   AboutRoute: typeof AboutRoute
   ButtonsRoute: typeof ButtonsRoute
+  DemoRoute: typeof DemoRoute
   LearnRoute: typeof LearnRoute
-  etypePickRoute: typeof etypePickRoute
+  etypeMatchRoute: typeof etypeMatchRoute
+  etypeMcqRoute: typeof etypeMcqRoute
+  etypeTilesRoute: typeof etypeTilesRoute
+  etypeTranslateRoute: typeof etypeTranslateRoute
+  ApiMatch1Route: typeof ApiMatch1Route
   ApiPick1Route: typeof ApiPick1Route
+  ApiTiles1Route: typeof ApiTiles1Route
+  ApiTranslate1Route: typeof ApiTranslate1Route
+  LessonsLessonIdRoute: typeof LessonsLessonIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,20 +219,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/$': {
-      id: '/$'
-      path: '/$'
-      fullPath: '/$'
-      preLoaderRoute: typeof SplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/404': {
-      id: '/404'
-      path: '/404'
-      fullPath: '/404'
-      preLoaderRoute: typeof R404RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -171,6 +235,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButtonsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn': {
       id: '/learn'
       path: '/learn'
@@ -178,11 +249,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(etype)/pick': {
-      id: '/(etype)/pick'
-      path: '/pick'
-      fullPath: '/pick'
-      preLoaderRoute: typeof etypePickRouteImport
+    '/(etype)/match': {
+      id: '/(etype)/match'
+      path: '/match'
+      fullPath: '/match'
+      preLoaderRoute: typeof etypeMatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(etype)/mcq': {
+      id: '/(etype)/mcq'
+      path: '/mcq'
+      fullPath: '/mcq'
+      preLoaderRoute: typeof etypeMcqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(etype)/tiles': {
+      id: '/(etype)/tiles'
+      path: '/tiles'
+      fullPath: '/tiles'
+      preLoaderRoute: typeof etypeTilesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(etype)/translate': {
+      id: '/(etype)/translate'
+      path: '/translate'
+      fullPath: '/translate'
+      preLoaderRoute: typeof etypeTranslateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/match1': {
+      id: '/api/match1'
+      path: '/api/match1'
+      fullPath: '/api/match1'
+      preLoaderRoute: typeof ApiMatch1RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/pick1': {
@@ -192,18 +291,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPick1RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/tiles1': {
+      id: '/api/tiles1'
+      path: '/api/tiles1'
+      fullPath: '/api/tiles1'
+      preLoaderRoute: typeof ApiTiles1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/translate1': {
+      id: '/api/translate1'
+      path: '/api/translate1'
+      fullPath: '/api/translate1'
+      preLoaderRoute: typeof ApiTranslate1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lessons/$lessonId': {
+      id: '/lessons/$lessonId'
+      path: '/lessons/$lessonId'
+      fullPath: '/lessons/$lessonId'
+      preLoaderRoute: typeof LessonsLessonIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  SplatRoute: SplatRoute,
-  R404Route: R404Route,
   AboutRoute: AboutRoute,
   ButtonsRoute: ButtonsRoute,
+  DemoRoute: DemoRoute,
   LearnRoute: LearnRoute,
-  etypePickRoute: etypePickRoute,
+  etypeMatchRoute: etypeMatchRoute,
+  etypeMcqRoute: etypeMcqRoute,
+  etypeTilesRoute: etypeTilesRoute,
+  etypeTranslateRoute: etypeTranslateRoute,
+  ApiMatch1Route: ApiMatch1Route,
   ApiPick1Route: ApiPick1Route,
+  ApiTiles1Route: ApiTiles1Route,
+  ApiTranslate1Route: ApiTranslate1Route,
+  LessonsLessonIdRoute: LessonsLessonIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

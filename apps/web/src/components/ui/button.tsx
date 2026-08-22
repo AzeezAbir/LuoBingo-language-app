@@ -9,30 +9,28 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-white text-black border-white/20 border-2 border-b-[4px] active:border-b-2 hover:bg-slate-100 dark:text-background ",
+          "bg-white border-white/20 border-2 border-b-[4px] active:border-b-2",
         primary:
-          "bg-[#1CB0F6] border-[#1CB0F6]/50 border-b-[3px] active:border-b-2",
-        secondary: "bg-[#58CC02]",
-        destructive: "bg-[#EA2B2B]",
+          "bg-[#1CB0F6] border-[#1CB0F6]/50 border-b-[4px] active:border-b-[0px] active:mt-[4px]",
+        secondary:
+          "bg-[#58CC02] border-[#58CC02]/50 border-b-[4px] active:border-b-[0px] active:mt-[4px]",
+        destructive:
+          "bg-[#EA2B2B] border-[#EA2B2B]/50 border-b-[4px] active:border-b-[0px] active:mt-[4px]",
         outline:
-          "text-[#1CB0F6] dark:text-[#1CB0F6]/80 border-2 border-[#1CB0F6]/50 active:border-b-2",
-        disabled:
-          "bg-[#52656D] text-background/90 active:not-aria-[haspopup]:translate-y-0 cursor-default pointer-events-none",
-        link: "bg-transparent text-[#1CB0F6] dark:text-[#1CB0F6]/80 hover:text-[#1CB0F6]/80 underline",
-        premium:
-          "bg-gradient-to-r from-[#1CB0F6] to-[#58CC02] text-background border-2 border-b-[4px] active:border-b-2",
-        card: "bg-white dark:bg-background border-2 border-[#37464F] text-black dark:text-card-foreground hover:border-[#1cb0f6] active:border-[#1CB0F6] focus:bg-brand-blue/20 capitalize ",
+          "border-2 border-[#1CB0F6]/50 active:border-b-2 bg-transparent",
+        disabled: "bg-[#52656D]",
+        link: "bg-transparent",
+        premium: "bg-[#1CB0F6] border-2 border-b-[4px] active:border-b-2", // Fallback for gradient
+        card: "bg-white dark:bg-background border-2 border-[#37464F] active:border-[#1CB0F6]",
       },
-
       size: {
-        default: "h-11 w-100 px-10 py-2",
+        default: "h-11 px-10 py-2",
         sm: "h-9 px-3",
         lg: "h-12 px-8",
         icon: "h-10 w-10",
-        rounded: "rounded-full",
+        rounded: "rounded-full h-11 px-10 py-2",
       },
     },
-
     defaultVariants: {
       variant: "default",
       size: "default",

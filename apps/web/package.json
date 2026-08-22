@@ -41,6 +41,7 @@
     "normalize.css": "^8.0.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-native-web": "^0.21.2",
     "shadcn": "^4.16.0",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.1.18",

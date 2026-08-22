@@ -10,6 +10,16 @@ export const Route = createFileRoute("/api/pick1")({
           const db = client.db("LuoBingo");
           const questions = await db.collection("mcqs").find({}).toArray();
 
+          if (!questions || questions.length === 0) {
+            return new Response(
+              JSON.stringify({ error: "No MCQs found in database" }),
+              {
+                status: 404,
+                headers: { "Content-Type": "application/json" }
+              }
+            );
+          }
+
           const formattedQuestions = questions.map((q: any) => ({
             id: q._id.toString(),
             question: q.question || "",

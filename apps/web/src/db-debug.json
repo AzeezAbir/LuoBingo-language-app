@@ -1,0 +1,26 @@
+{
+  "collections": [
+    "grammer",
+    "mcqs"
+  ],
+  "sampleQuestion": {
+    "_id": "6a7eb02e3fd67a76fa8bbb38",
+    "question": "How do you say \"Tota\" in Kannada?",
+    "correctAnswer": "ಗಿಳಿ",
+    "options": [
+      "ಜಿಂಕೆ",
+      "ಗಿಳಿ",
+      "ಬೇಡ"
+    ]
+  },
+  "questionsCount": 4,
+  "sampleGrammer": {
+    "_id": "6a7c5bfc11ecc8d70e24362a",
+    "Type": "wh",
+    "English": "What",
+    "Kannada": "ಏನು",
+    "Roman Kan": "Yenu",
+    "Dakhni": "Kya"
+  },
+  "grammerCount": 213
+}

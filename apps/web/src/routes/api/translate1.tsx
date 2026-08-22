@@ -10,32 +10,18 @@ export const Route = createFileRoute("/api/translate1")({
           const db = client.db("LuoBingo");
           const translateData = await db.collection("translate").find({}).toArray();
           
-          if (translateData.length === 0) {
-            // Fallback mock data in case the database is not seeded
+          if (!translateData || translateData.length === 0) {
             return new Response(
-              JSON.stringify([
-                {
-                  questionText: "ಜಿಂಕೆ ಹಾರಿ ತಪ್ಪಿಸಿಕೊಂಡಿತು",
-                  sentenceWords: [
-                    { word: "ಜಿಂಕೆ", tooltip: "Hiran" },
-                    { word: "ಹಾರಿ", tooltip: "kudko" },
-                    { word: "ತಪ್ಪಿಸಿಕೊಂಡಿತು", tooltip: "bhaaga" }
-                  ],
-                  bankWords: [
-                    { id: "1", text: "Hiran", hidden: false },
-                    { id: "2", text: "kudko", hidden: false },
-                    { id: "3", text: "bhaaga", hidden: false }
-                  ],
-                  correctOrder: ["1", "2", "3"]
-                }
-              ]),
+              JSON.stringify({ error: "No translate questions found in database" }),
               {
+                status: 404,
                 headers: { "Content-Type": "application/json" },
               }
             );
           }
 
           return new Response(JSON.stringify(translateData), {
+            status: 200,
             headers: { "Content-Type": "application/json" },
           });
         } catch (error: any) {
@@ -44,7 +30,6 @@ export const Route = createFileRoute("/api/translate1")({
             JSON.stringify({
               error: "Failed to fetch translation data",
               message: error.message,
-              stack: error.stack,
             }),
             {
               status: 500,

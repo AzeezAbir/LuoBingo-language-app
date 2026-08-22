@@ -7,7 +7,12 @@ import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 const config = defineConfig({
-  resolve: { tsconfigPaths: true },
+  resolve: {
+    tsconfigPaths: true,
+    alias: {
+      'react-native': 'react-native-web',
+    },
+  },
   plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact()],
 })
 

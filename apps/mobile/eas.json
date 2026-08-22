@@ -8,7 +8,13 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EAS_BUILD_WORKSPACE_ROOT": "../.."
+      },
+      "android": {
+        "buildType": "apk"
+      }
     },
     "production": {}
   },

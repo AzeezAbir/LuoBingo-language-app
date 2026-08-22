@@ -2,14 +2,15 @@
   "expo": {
     "name": "mobile",
     "slug": "mobile",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.azeeksharkado.mobile",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -18,12 +19,22 @@
       },
       "predictiveBackGestureEnabled": false
     },
+    "scheme": "luobingo",
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "server"
     },
     "plugins": [
       "expo-secure-store",
-      "expo-web-browser"
-    ]
+      "expo-web-browser",
+      "expo-font",
+      "./withSplitApks.js"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "6306f463-2f34-41b5-9119-d7b7328f5ced"
+      }
+    }
   }
 }

@@ -12,14 +12,20 @@
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "#/*": ["./apps/web/src/*"],
-      "@/*": ["./apps/web/src/*"]
+      "#/*": [
+        "./apps/web/src/*"
+      ],
+      "@/*": [
+        "./apps/web/src/*"
+      ]
     }
   },
   "include": [
     "apps/web/**/*.ts",
     "apps/web/**/*.tsx",
     "apps/mobile/**/*.ts",
-    "apps/mobile/**/*.tsx"
-  ]
+    "apps/mobile/**/*.tsx",
+    "nativewind-env.d.ts"
+  ],
+  "extends": "expo/tsconfig.base"
 }
