@@ -34,7 +34,15 @@ interface DemoState {
 }
 
 // Helper for dev environment API URL
-const getApiUrl = (path: string) => `/api${path}`;
+const getApiUrl = (path: string) => {
+  if (Platform.OS === "web") {
+    return `/api${path}`;
+  }
+  // For Android/iOS, relative paths like /api/... don't work because there is no browser origin.
+  // We must use the absolute Vercel production URL!
+  const baseUrl = process.env.EXPO_PUBLIC_API_URL || "https://mobile-cu2rjfrge-azeezabirs-projects.vercel.app";
+  return `${baseUrl}/api${path}`;
+};
 
 export const useDemoStore = create<DemoState>((set, get) => ({
   currentStep: 0,

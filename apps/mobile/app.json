@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "mobile",
+    "name": "LuoBingo",
     "slug": "mobile",
-    "version": "1.2.0",
+    "version": "1.2.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -35,6 +35,12 @@
       "eas": {
         "projectId": "6306f463-2f34-41b5-9119-d7b7328f5ced"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/6306f463-2f34-41b5-9119-d7b7328f5ced"
     }
   }
 }
