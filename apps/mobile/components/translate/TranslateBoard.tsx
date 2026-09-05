@@ -111,7 +111,11 @@ export default function TranslateBoard({
   return (
     <View className="w-full flex-1 flex-col">
       <View className="mt-2 mb-2 w-full">
-        <Text className="text-2xl font-extrabold text-slate-800 dark:text-white tracking-wide font-sans mb-1">
+        <Text 
+          adjustsFontSizeToFit 
+          numberOfLines={1}
+          className="text-2xl font-extrabold text-slate-800 dark:text-white tracking-wide font-sans mb-1"
+        >
           Translate this sentence
         </Text>
       </View>

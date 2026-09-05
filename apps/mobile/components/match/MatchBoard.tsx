@@ -20,7 +20,11 @@ export default function MatchBoard({ words, onCorrect }: MatchBoardProps) {
   return (
     <View className="w-full flex-1 flex-col">
       <View className="mt-2 mb-4 w-full flex-row justify-between items-center">
-        <Text className="text-2xl font-extrabold text-slate-800 dark:text-white tracking-wide mb-1">
+        <Text 
+          adjustsFontSizeToFit 
+          numberOfLines={1}
+          className="text-2xl font-extrabold text-slate-800 dark:text-white tracking-wide mb-1"
+        >
           Tap the matching pairs
         </Text>
         <TouchableOpacity onPress={onCorrect} className="px-2 py-1">

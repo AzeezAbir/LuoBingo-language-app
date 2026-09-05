@@ -43,7 +43,9 @@ export default function TilesBoard({
       // or if the underlying options dataset actually changed (different IDs/images)
       const hasExisting = shuffledOptions.length > 0;
       const existingIds = new Set(shuffledOptions.map((o) => o.index));
-      const optionsChanged = options.some((o) => !existingIds.has(o.index)) || options.length !== shuffledOptions.length;
+      const optionsChanged =
+        options.some((o) => !existingIds.has(o.index)) ||
+        options.length !== shuffledOptions.length;
 
       if (!hasExisting || optionsChanged) {
         setShuffledOptions(shuffleArray(options));
@@ -54,10 +56,14 @@ export default function TilesBoard({
   return (
     <View className="w-full flex-1 flex-col">
       <View className="mt-2 mb-2 w-full">
-        <Text className="text-2xl font-extrabold text-slate-800 dark:text-white tracking-wide font-sans mb-1">
+        <Text 
+          adjustsFontSizeToFit 
+          numberOfLines={1} 
+          className="text-2xl font-extrabold text-slate-800 dark:text-white tracking-wide font-sans mb-1"
+        >
           Select the correct image
         </Text>
-        <Text className="text-lg font-medium text-slate-600 dark:text-gray-300 mt-1 mb-2 font-sans">
+        <Text className="text-sm font-medium text-slate-500 dark:text-gray-400 mt-1 mb-2 font-sans">
           {questionText}
         </Text>
       </View>
@@ -76,6 +82,7 @@ export default function TilesBoard({
                 fast={opt.fast}
                 imageSrc={opt.imageURL}
                 isCorrect={isCorrect}
+                disabled={isCorrect !== null || isValidating}
               />
             </View>
           ))}
