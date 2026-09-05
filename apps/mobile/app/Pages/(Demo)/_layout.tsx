@@ -59,6 +59,17 @@ export default function DemoLayout() {
     btnText = "TRY AGAIN";
   }
 
+  let footerBg = "bg-bg-base dark:bg-bg-dark";
+  let bannerMessage = "";
+
+  if (isStepCorrect === true) {
+    footerBg = "bg-[#58CC02]/15 dark:bg-[#58CC02]/15";
+    bannerMessage = "Correct! Well done!";
+  } else if (isStepCorrect === false) {
+    footerBg = "bg-[#ea2b2b]/15 dark:bg-[#ea2b2b]/15";
+    bannerMessage = "Incorrect. Please try again.";
+  }
+
   // If data is still loading, show a loading indicator
   if (isLoading) {
     return <Loading />;
@@ -66,27 +77,39 @@ export default function DemoLayout() {
 
   return (
     <SafeAreaView className="flex-1 bg-bg-base dark:bg-bg-dark">
-      {/* Top Header: Close Button + Progress Bar */}
-      <View className="flex-row items-center px-4 py-2 gap-2">
-        <Close href="/" />
-        <ProgBar progressValue={progressValue} />
-      </View>
+      <View className="flex-1 relative">
+        {/* Top Header: Close Button + Progress Bar */}
+        <View className="flex-row items-center px-4 py-2 gap-2">
+          <Close href="/" />
+          <ProgBar progressValue={progressValue} />
+        </View>
 
-      {/* Main Content Area */}
-      <View className="flex-1 px-4 pt-4">
-        <Slot />
-      </View>
+        {/* Main Content Area */}
+        <View className="flex-1 px-4 pt-4 pb-[140px]">
+          <Slot />
+        </View>
 
-      {/* Bottom Footer: Check Button */}
-      <View className="px-4 py-6 border-t-2 border-slate-200 dark:border-slate-800 bg-bg-base dark:bg-bg-dark">
-        <Button
-          variant={btnVariant}
-          className="w-full"
-          disabled={isButtonDisabled}
-          onPress={onButtonPress}
+        {/* Bottom Footer: Dynamic Banner (Absolute to prevent layout shift) */}
+        <View
+          className={`absolute bottom-0 left-0 right-0 px-4 py-6 border-t-2 border-slate-200 dark:border-slate-800 ${footerBg}`}
         >
-          <Text>{btnText}</Text>
-        </Button>
+          {/* Banner Message */}
+          {isStepCorrect !== null && (
+            <View className="mb-4">
+              <Text className={isStepCorrect ? "text-lg font-extrabold text-[#58CC02]" : "text-lg font-extrabold text-[#ea2b2b]"}>
+                {bannerMessage}
+              </Text>
+            </View>
+          )}
+          <Button
+            variant={btnVariant}
+            className="w-full"
+            disabled={isButtonDisabled}
+            onPress={onButtonPress}
+          >
+            <Text>{btnText}</Text>
+          </Button>
+        </View>
       </View>
     </SafeAreaView>
   );
